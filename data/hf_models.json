@@ -53,7 +53,7 @@
     "pipeline_tag": "text-generation",
     "architecture": "llama",
     "hf_downloads": 1834889,
-    "hf_likes": 1536,
+    "hf_likes": 1537,
     "release_date": "2023-12-30"
   },
   {
@@ -422,7 +422,7 @@
     "pipeline_tag": "text-generation",
     "architecture": "qwen2",
     "hf_downloads": 19284289,
-    "hf_likes": 1101,
+    "hf_likes": 1102,
     "release_date": "2024-09-16",
     "gguf_sources": [
       {
@@ -998,6 +998,29 @@
     ]
   },
   {
+    "name": "Qwen/Qwen3.5-27B",
+    "provider": "Alibaba",
+    "parameter_count": "27.8B",
+    "parameters_raw": 27781427952,
+    "min_ram_gb": 15.5,
+    "recommended_ram_gb": 25.9,
+    "min_vram_gb": 14.2,
+    "quantization": "Q4_K_M",
+    "context_length": 262144,
+    "use_case": "General purpose",
+    "pipeline_tag": "image-text-to-text",
+    "architecture": "qwen3_5",
+    "hf_downloads": 217725,
+    "hf_likes": 466,
+    "release_date": "2026-02-24",
+    "gguf_sources": [
+      {
+        "repo": "unsloth/Qwen3.5-27B-GGUF",
+        "provider": "unsloth"
+      }
+    ]
+  },
+  {
     "name": "allenai/OLMo-2-0325-32B-Instruct",
     "provider": "allenai",
     "parameter_count": "32.2B",
@@ -1155,6 +1178,29 @@
     ]
   },
   {
+    "name": "Qwen/Qwen3.5-35B-A3B",
+    "provider": "Alibaba",
+    "parameter_count": "36.0B",
+    "parameters_raw": 35951822704,
+    "min_ram_gb": 20.1,
+    "recommended_ram_gb": 33.5,
+    "min_vram_gb": 18.4,
+    "quantization": "Q4_K_M",
+    "context_length": 262144,
+    "use_case": "General purpose",
+    "pipeline_tag": "image-text-to-text",
+    "architecture": "qwen3_5_moe",
+    "hf_downloads": 481446,
+    "hf_likes": 731,
+    "release_date": "2026-02-24",
+    "gguf_sources": [
+      {
+        "repo": "unsloth/Qwen3.5-35B-A3B-GGUF",
+        "provider": "unsloth"
+      }
+    ]
+  },
+  {
     "name": "tiiuae/falcon-40b-instruct",
     "provider": "TII",
     "parameter_count": "40.0B",
@@ -1271,12 +1317,35 @@
     "pipeline_tag": "text-generation",
     "architecture": "qwen2",
     "hf_downloads": 530114,
-    "hf_likes": 914,
+    "hf_likes": 915,
     "release_date": "2024-09-16",
     "gguf_sources": [
       {
         "repo": "bartowski/Qwen2.5-72B-Instruct-GGUF",
         "provider": "bartowski"
+      }
+    ]
+  },
+  {
+    "name": "Qwen/Qwen3.5-122B-A10B",
+    "provider": "Alibaba",
+    "parameter_count": "125.1B",
+    "parameters_raw": 125086497008,
+    "min_ram_gb": 69.9,
+    "recommended_ram_gb": 116.5,
+    "min_vram_gb": 64.1,
+    "quantization": "Q4_K_M",
+    "context_length": 262144,
+    "use_case": "General purpose",
+    "pipeline_tag": "image-text-to-text",
+    "architecture": "qwen3_5_moe",
+    "hf_downloads": 127141,
+    "hf_likes": 357,
+    "release_date": "2026-02-24",
+    "gguf_sources": [
+      {
+        "repo": "unsloth/Qwen3.5-122B-A10B-GGUF",
+        "provider": "unsloth"
       }
     ]
   },
@@ -1425,6 +1494,29 @@
     "gguf_sources": [
       {
         "repo": "unsloth/Llama-4-Maverick-17B-128E-Instruct-GGUF",
+        "provider": "unsloth"
+      }
+    ]
+  },
+  {
+    "name": "Qwen/Qwen3.5-397B-A17B",
+    "provider": "Alibaba",
+    "parameter_count": "403.4B",
+    "parameters_raw": 403397928944,
+    "min_ram_gb": 225.4,
+    "recommended_ram_gb": 375.7,
+    "min_vram_gb": 206.6,
+    "quantization": "Q4_K_M",
+    "context_length": 262144,
+    "use_case": "General purpose",
+    "pipeline_tag": "image-text-to-text",
+    "architecture": "qwen3_5_moe",
+    "hf_downloads": 1030009,
+    "hf_likes": 1143,
+    "release_date": "2026-02-16",
+    "gguf_sources": [
+      {
+        "repo": "unsloth/Qwen3.5-397B-A17B-GGUF",
         "provider": "unsloth"
       }
     ]

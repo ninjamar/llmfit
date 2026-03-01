@@ -78,6 +78,10 @@ TARGET_MODELS = [
     "Qwen/Qwen3-30B-A3B",
     "Qwen/Qwen3-235B-A22B",
     "Qwen/Qwen3-Coder-480B-A35B-Instruct",
+    "Qwen/Qwen3.5-27B",
+    "Qwen/Qwen3.5-35B-A3B",
+    "Qwen/Qwen3.5-122B-A10B",
+    "Qwen/Qwen3.5-397B-A17B",
     # Microsoft Phi
     "microsoft/phi-3-mini-4k-instruct",
     "microsoft/Phi-3-medium-14b-instruct",
@@ -198,6 +202,9 @@ MOE_ACTIVE_PARAMS = {
     "Qwen/Qwen3-30B-A3B": 3_300_000_000,
     "Qwen/Qwen3-235B-A22B": 22_000_000_000,
     "Qwen/Qwen3-Coder-480B-A35B-Instruct": 35_000_000_000,
+    "Qwen/Qwen3.5-35B-A3B": 3_000_000_000,
+    "Qwen/Qwen3.5-122B-A10B": 10_000_000_000,
+    "Qwen/Qwen3.5-397B-A17B": 17_000_000_000,
     "meta-llama/Llama-4-Scout-17B-16E-Instruct": 17_000_000_000,
     "meta-llama/Llama-4-Maverick-17B-128E-Instruct": 17_000_000_000,
     "xai-org/grok-1": 86_000_000_000,
@@ -337,18 +344,31 @@ def infer_context_length(config: dict | None) -> int:
     """Try to extract context length from model config."""
     if not config:
         return 4096
+
     # Common config keys for max sequence length
-    for key in [
+    keys_to_check = [
         "max_position_embeddings",
         "max_sequence_length",
         "seq_length",
         "n_positions",
         "sliding_window",
-    ]:
+    ]
+
+    # Check top-level config
+    for key in keys_to_check:
         if key in config:
             val = config[key]
             if isinstance(val, int) and val > 0:
                 return val
+
+    # For multimodal models (e.g., Qwen3.5), check text_config
+    if "text_config" in config and isinstance(config["text_config"], dict):
+        for key in keys_to_check:
+            if key in config["text_config"]:
+                val = config["text_config"][key]
+                if isinstance(val, int) and val > 0:
+                    return val
+
     return 4096
 
 
@@ -1134,6 +1154,46 @@ def main():
             "quantization": "Q4_K_M", "context_length": 131072,
             "use_case": "General purpose text generation",
             "pipeline_tag": "text-generation", "architecture": "qwen3",
+            "hf_downloads": 0, "hf_likes": 0, "release_date": None,
+        },
+        {
+            "name": "Qwen/Qwen3.5-27B",
+            "provider": "Alibaba", "parameter_count": "27.8B",
+            "parameters_raw": 27781427952,
+            "min_ram_gb": 15.5, "recommended_ram_gb": 25.9, "min_vram_gb": 14.2,
+            "quantization": "Q4_K_M", "context_length": 262144,
+            "use_case": "Multimodal, vision and text",
+            "pipeline_tag": "image-text-to-text", "architecture": "qwen3_5",
+            "hf_downloads": 0, "hf_likes": 0, "release_date": None,
+        },
+        {
+            "name": "Qwen/Qwen3.5-35B-A3B",
+            "provider": "Alibaba", "parameter_count": "36.0B",
+            "parameters_raw": 35951822704,
+            "min_ram_gb": 20.1, "recommended_ram_gb": 33.5, "min_vram_gb": 18.4,
+            "quantization": "Q4_K_M", "context_length": 262144,
+            "use_case": "Multimodal, vision and text",
+            "pipeline_tag": "image-text-to-text", "architecture": "qwen3_5_moe",
+            "hf_downloads": 0, "hf_likes": 0, "release_date": None,
+        },
+        {
+            "name": "Qwen/Qwen3.5-122B-A10B",
+            "provider": "Alibaba", "parameter_count": "125.1B",
+            "parameters_raw": 125086497008,
+            "min_ram_gb": 69.9, "recommended_ram_gb": 116.5, "min_vram_gb": 64.1,
+            "quantization": "Q4_K_M", "context_length": 262144,
+            "use_case": "Multimodal, vision and text",
+            "pipeline_tag": "image-text-to-text", "architecture": "qwen3_5_moe",
+            "hf_downloads": 0, "hf_likes": 0, "release_date": None,
+        },
+        {
+            "name": "Qwen/Qwen3.5-397B-A17B",
+            "provider": "Alibaba", "parameter_count": "403.4B",
+            "parameters_raw": 403397928944,
+            "min_ram_gb": 225.4, "recommended_ram_gb": 375.7, "min_vram_gb": 206.6,
+            "quantization": "Q4_K_M", "context_length": 262144,
+            "use_case": "Multimodal, vision and text",
+            "pipeline_tag": "image-text-to-text", "architecture": "qwen3_5_moe",
             "hf_downloads": 0, "hf_likes": 0, "release_date": None,
         },
     ]
