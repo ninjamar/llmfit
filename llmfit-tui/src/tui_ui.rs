@@ -2082,12 +2082,25 @@ fn draw_provider_popup(frame: &mut Frame, app: &App, tc: &ThemeColors) {
                 .fg(tc.accent_secondary)
                 .add_modifier(Modifier::BOLD),
         )
-        .title_bottom(Line::from(vec![
-            Span::styled(" a", Style::default().fg(tc.accent_secondary).add_modifier(Modifier::BOLD)),
-            Span::styled(": all | ", Style::default().fg(tc.muted)),
-            Span::styled("c", Style::default().fg(tc.accent_secondary).add_modifier(Modifier::BOLD)),
-            Span::styled(": clear ", Style::default().fg(tc.muted)),
-        ]).centered());
+        .title_bottom(
+            Line::from(vec![
+                Span::styled(
+                    " a",
+                    Style::default()
+                        .fg(tc.accent_secondary)
+                        .add_modifier(Modifier::BOLD),
+                ),
+                Span::styled(": all | ", Style::default().fg(tc.muted)),
+                Span::styled(
+                    "c",
+                    Style::default()
+                        .fg(tc.accent_secondary)
+                        .add_modifier(Modifier::BOLD),
+                ),
+                Span::styled(": clear ", Style::default().fg(tc.muted)),
+            ])
+            .centered(),
+        );
 
     let paragraph = Paragraph::new(lines).block(block);
     frame.render_widget(paragraph, popup_area);
