@@ -461,6 +461,8 @@ Model categories span general purpose, coding (CodeLlama, StarCoder2, WizardCode
 
 See [MODELS.md](MODELS.md) for the full list.
 
+The model database is embedded at compile time, so **end users** get updates by upgrading llmfit itself (`brew upgrade llmfit`, `scoop update llmfit`, or downloading a newer release). The commands below are for **contributors** refreshing the database from source:
+
 To refresh the model database:
 
 ```sh
@@ -565,7 +567,7 @@ llmfit supports multiple local runtime providers:
 
 - **Ollama** (daemon/API based pulls)
 - **llama.cpp** (direct GGUF downloads from Hugging Face + local cache detection)
-- **MLX** (Apple Silicon / mlx-community model cache + optional server)
+- **MLX** (Apple Silicon / mlx-community model cache + optional server) — MLX downloads map to `mlx-community/*` repos on HuggingFace, not the original model publisher
 - **Docker Model Runner** (Docker Desktop's built-in model serving)
 - **LM Studio** (local model server with REST API for model management + downloads)
 
@@ -624,6 +626,15 @@ How it works:
 - llmfit maps HF models to known GGUF repos (with heuristic fallbacks)
 - downloads GGUF files into the local llama.cpp model cache
 - marks models installed when matching GGUF files are present locally
+
+#### Environment variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `LLAMA_CPP_PATH` | *(none)* | Directory containing llama.cpp binaries (`llama-cli`, `llama-server`). Checked before `PATH` lookup. |
+| `LLAMA_SERVER_PORT` | `8080` | Port used when probing a running `llama-server` health endpoint for runtime detection. |
+
+If llama.cpp is installed in a non-standard location, set `LLAMA_CPP_PATH` so llmfit can find it without requiring it in your `PATH`.
 
 ### Docker Model Runner integration
 
