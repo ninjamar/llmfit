@@ -885,9 +885,7 @@ impl App {
     }
 
     pub fn cycle_top_bottom(&mut self) {
-        if !self.filtered_fits.is_empty()
-            && self.selected_row == self.filtered_fits.len() - 1
-        {
+        if !self.filtered_fits.is_empty() && self.selected_row == self.filtered_fits.len() - 1 {
             self.selected_row = 0;
         } else {
             self.selected_row = self.filtered_fits.len().saturating_sub(1);
